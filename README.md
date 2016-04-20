@@ -4,6 +4,8 @@ This notifier for the [FastBoot App Server][app-server] works with AWS
 S3 to poll an object's Last Modified header to detect when you have
 deployed a new version of your app.
 
+[app-server]: https://github.com/ember-fastboot/fastboot-app-server
+
 To use the notifier, configure it with an S3 bucket and key:
 
 ```js
