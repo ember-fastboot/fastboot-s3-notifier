@@ -24,7 +24,7 @@ class S3Notifier {
   subscribe(notify) {
     this.notify = notify;
 
-    this.getCurrentLastModified()
+    return this.getCurrentLastModified()
       .then(() => this.schedulePoll());
   }
 
