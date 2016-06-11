@@ -13,7 +13,7 @@ class S3Notifier {
     this.ui = options.ui;
     this.bucket = options.bucket;
     this.key = options.key;
-    this.notifers = [];
+    this.notifiers = [];
     this.pollTime = options.poll || DEFAULT_POLL_TIME;
 
     this.params = {
