@@ -13,6 +13,7 @@ class S3Notifier {
     this.ui = options.ui;
     this.bucket = options.bucket;
     this.key = options.key;
+    this.notifers = [];
     this.pollTime = options.poll || DEFAULT_POLL_TIME;
 
     this.params = {
@@ -22,7 +23,7 @@ class S3Notifier {
   }
 
   subscribe(notify) {
-    this.notify = notify;
+    this.notifiers.push(notify);
 
     return this.getCurrentLastModified()
       .then(() => this.schedulePoll());
@@ -56,7 +57,7 @@ class S3Notifier {
     if (newLastModified !== this.lastModified) {
       this.ui.writeLine('config modified; old=%s; new=%s', this.lastModified, newLastModified);
       this.lastModified = newLastModified;
-      this.notify();
+      this.notifiers.forEach(notifier => notifier(newLastModified));
     }
   }
 }
