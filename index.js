@@ -4,11 +4,6 @@ const AWS  = require('aws-sdk');
 
 const DEFAULT_POLL_TIME = 3 * 1000;
 
-const s3 = new AWS.S3({
-  apiVersion: '2006-03-01',
-  signatureVersion: 'v4'
-});
-
 class S3Notifier {
   constructor(options) {
     this.ui = options.ui;
@@ -20,6 +15,12 @@ class S3Notifier {
       Bucket: this.bucket,
       Key: this.key
     };
+
+    this.s3 = new AWS.S3({
+      apiVersion: '2006-03-01',
+      signatureVersion: 'v4',
+      region: options.region
+    });
   }
 
   subscribe(notify) {
@@ -30,7 +31,7 @@ class S3Notifier {
   }
 
   getCurrentLastModified() {
-    return s3.headObject(this.params).promise()
+    return this.s3.headObject(this.params).promise()
       .then(data => {
         this.lastModified = data.LastModified;
       })
@@ -46,7 +47,7 @@ class S3Notifier {
   }
 
   poll() {
-    s3.headObject(this.params).promise()
+    this.s3.headObject(this.params).promise()
       .then(data => {
         this.compareLastModifieds(data.LastModified);
         this.schedulePoll();
