@@ -54,7 +54,7 @@ class S3Notifier {
   }
 
   compareLastModifieds(newLastModified) {
-    if (newLastModified !== this.lastModified) {
+    if ((newLastModified + '') !== (this.lastModified + '')) {
       this.ui.writeLine('config modified; old=%s; new=%s', this.lastModified, newLastModified);
       this.lastModified = newLastModified;
       this.notify();
