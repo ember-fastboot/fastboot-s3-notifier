@@ -1,6 +1,6 @@
 {
   "name": "fastboot-s3-notifier",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A FastBoot App Server notifier for AWS S3",
   "main": "index.js",
   "scripts": {
