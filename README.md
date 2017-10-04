@@ -14,7 +14,8 @@ const S3Notifier = require('fastboot-s3-notifier');
 let notifier = new S3Notifier({
   bucket: S3_BUCKET,
   key: S3_KEY,
-  region: AWS_REGION // optional
+  region: AWS_REGION, // optional
+  endpoint: AWS_ENDPOINT_URL // optional
 });
 
 let server = new FastBootAppServer({
