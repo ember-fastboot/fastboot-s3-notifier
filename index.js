@@ -16,13 +16,10 @@ class S3Notifier {
       Key: this.key
     };
 
-    this.s3 = new AWS.S3({
+    this.s3 = new AWS.S3(Object.assign(options.s3_options || {}, {
       apiVersion: '2006-03-01',
-      signatureVersion: 'v4',
-      region: options.region,
-      accessKeyId: options.accessKeyId,
-      secretAccessKey: options.secretAccessKey
-    });
+      signatureVersion: 'v4'
+    }));
   }
 
   subscribe(notify) {
