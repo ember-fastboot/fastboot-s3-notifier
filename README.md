@@ -15,6 +15,8 @@ let notifier = new S3Notifier({
   bucket: S3_BUCKET,
   key: S3_KEY,
   region: AWS_REGION // optional
+  accessKeyId: AWS_ACCESS_KEY_ID // optional,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY // optional
 });
 
 let server = new FastBootAppServer({
