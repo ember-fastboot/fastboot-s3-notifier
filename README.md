@@ -33,6 +33,6 @@ propagate configuration changes to all of your app servers, and they can
 poll a single key in perpetuity.
 
 If you like this, you may also be interested in the companion
-[fastboot-s3-downloader](https://github.com/tomdale/fastboot-s3-downloader),
+[fastboot-s3-downloader](https://github.com/ember-fastboot/fastboot-s3-downloader),
 which parses the above-described JSON file to find and download the
 latest version of your app.
