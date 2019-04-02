@@ -51,6 +51,10 @@ class S3Notifier {
       .then(data => {
         this.compareLastModifieds(data.LastModified);
         this.schedulePoll();
+      })
+      .catch(() => {
+        this.ui.writeError('error fetching S3 last modified; rescheduling');
+        this.schedulePoll();
       });
   }
 
