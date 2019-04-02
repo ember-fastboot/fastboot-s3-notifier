@@ -27,16 +27,16 @@ class S3Notifier {
     this.notify = notify;
 
     return this.getCurrentLastModified()
-      .then(() => this.schedulePoll());
+      .then(() => this.schedulePoll())
+      .catch(() => {
+        this.ui.writeError('error fetching S3 last modified; notifications disabled');
+      });
   }
 
   getCurrentLastModified() {
     return this.s3.headObject(this.params).promise()
       .then(data => {
         this.lastModified = data.LastModified;
-      })
-      .catch(() => {
-        this.ui.writeError('error fetching S3 last modified; notifications disabled');
       });
   }
 
